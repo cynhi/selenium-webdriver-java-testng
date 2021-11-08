@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class Topic_08_Dropdown_Default {
+public class Topic_09_Dropdown_Default {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 
