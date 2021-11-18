@@ -86,7 +86,17 @@ public class Topic_11_Button_Checkbox_RadioButton {
 		for(WebElement checkbox :  checkboxes) {
 			if(!checkbox.isSelected()) {
 				checkbox.click();
+				sleepInSecond(1);
 			}
+			Assert.assertTrue(checkbox.isSelected());
+		}
+		
+		for(WebElement checkbox :  checkboxes) {
+			if(checkbox.isSelected()) {
+				checkbox.click();
+				sleepInSecond(1);
+			}
+			Assert.assertFalse(checkbox.isSelected());
 		}
 	}
 	
