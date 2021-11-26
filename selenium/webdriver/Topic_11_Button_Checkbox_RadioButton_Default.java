@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_11_Button_Checkbox_RadioButton {
+public class Topic_11_Button_Checkbox_RadioButton_Default {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
 	String projectPath = System.getProperty("user.dir");
@@ -100,22 +100,6 @@ public class Topic_11_Button_Checkbox_RadioButton {
 		}
 	}
 	
-	@Test
-	public void TC_05_() {
-	}
-	
-	@Test
-	public void TC_06_() {
-	}
-	
-	@Test
-	public void TC_07_() {
-	}
-	
-	@Test
-	public void TC_08_() {
-	}
-
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
