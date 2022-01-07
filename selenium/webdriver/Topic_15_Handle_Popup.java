@@ -1,10 +1,13 @@
 package webdriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +20,7 @@ import org.testng.annotations.Test;
 public class Topic_15_Handle_Popup {
 	WebDriver driver;
 	WebDriverWait explicitWait;
+	JavascriptExecutor jsExecutor;
 	String projectPath = System.getProperty("user.dir");
 
 	@BeforeClass
@@ -24,6 +28,7 @@ public class Topic_15_Handle_Popup {
 		System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
 		driver = new FirefoxDriver();
 		
+		jsExecutor = (JavascriptExecutor) driver;
 		explicitWait = new WebDriverWait(driver, 30);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -119,25 +124,47 @@ public class Topic_15_Handle_Popup {
 		sleepInSecond(5);
 	}
 	
+	
+	//Popup element is always in DOM even when popup is shown on UI or not
 	@Test
-	public void TC_04_() {
+	public void TC_05_Random_Popup_In_DOM(){
+		driver.get("https://www.kmplayer.com/home");
+		//if popup is shown => close it (or interact with popup)
+		//if popup not shown => next step
+		WebElement supportHomePopup = driver.findElement(By.cssSelector("img#support-home"));
+		if(supportHomePopup.isDisplayed()) {
+			//Close
+			jsExecutor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//area[@id='btn-r']")));
+			sleepInSecond(2);
+		}
+		Assert.assertFalse(supportHomePopup.isDisplayed());
+		
+		driver.findElement(By.xpath("//div[@class='mv_btn']//a[text()='PC 64X']")).click();
+		WebElement supportPc64Popup = driver.findElement(By.cssSelector("img#support-img"));
+		Assert.assertTrue(supportPc64Popup.isDisplayed());
+		
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//area[@id ='down-url']")));
+		sleepInSecond(2);
+		
 	}
 	
+	//Popup element is not in DOM when popup is not shown on UI
 	@Test
-	public void TC_05_() {
+	public void TC_06_Random_Popup_Not_In_DOM(){
+		driver.get("https://dehieu.vn/");
+		sleepInSecond(10);
+		//Sometimes popup is not shown on view > use findElements to find, if get no pupup, return list will be empty
+		List <WebElement> cupponPopup = driver.findElements(By.cssSelector("div.popup-content"));
+		if(cupponPopup.size() > 0) {
+			driver.findElement(By.cssSelector("button#close-popup")).click();
+			sleepInSecond(2);
+		} else {
+			System.out.print("No popup is shown");
+		}
+		driver.findElement(By.xpath("//h4[text()='Khóa học thiết kế hệ thống M&E - Tòa nhà']")).click();
+		
 	}
 	
-	@Test
-	public void TC_06_() {
-	}
-	
-	@Test
-	public void TC_07_() {
-	}
-	
-	@Test
-	public void TC_08_() {
-	}
 
 	@AfterClass
 	public void afterClass() {
