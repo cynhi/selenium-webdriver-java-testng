@@ -33,13 +33,13 @@ public class Topic_20_Wait_P8_Page_Loading {
 		driver.findElement(By.xpath("//input[@name='txtUsername']")).sendKeys("Admin");
 		driver.findElement(By.xpath("//input[@name='txtPassword']")).sendKeys("admin123");
 		driver.findElement(By.xpath("//input[@id='btnLogin']")).click();
-		Assert.assertTrue(isJQueryLoadedSuccess(driver));
+		Assert.assertTrue(isJQueryLoadedSuccess());
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='total']//span")).getText(), "3 month(s)");
 		driver.findElement(By.xpath("//a[@id='menu_pim_viewPimModule']")).click();
-		Assert.assertTrue(isJQueryAndPageLoadSuccess(driver));
+		Assert.assertTrue(isJQueryAndPageLoadSuccess());
 		driver.findElement(By.xpath("//input[@id='empsearch_employee_name_empName']")).sendKeys("Peter mac");
 		driver.findElement(By.xpath("//input[@id='searchBtn']")).click();
-		Assert.assertTrue(isJQueryAndAjaxIconLoadedSuccess(driver));
+		Assert.assertTrue(isJQueryAndAjaxIconLoadedSuccess());
 		Assert.assertTrue(driver.findElement(By.xpath("//table[@id='resultTable']//a[text()='Peter Mac']")).isDisplayed());
 	}
 
@@ -51,7 +51,7 @@ public class Topic_20_Wait_P8_Page_Loading {
 	
 	//Custom functions
 	private long longTimeout = 30;
-	public boolean isJQueryLoadedSuccess(WebDriver driver){
+	public boolean isJQueryLoadedSuccess(){
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		jsExecutor = (JavascriptExecutor) driver;
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
@@ -64,7 +64,7 @@ public class Topic_20_Wait_P8_Page_Loading {
 		
 	}
 	
-	public boolean isJQueryAndAjaxIconLoadedSuccess(WebDriver driver) {
+	public boolean isJQueryAndAjaxIconLoadedSuccess() {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		jsExecutor = (JavascriptExecutor) driver;
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
@@ -86,7 +86,7 @@ public class Topic_20_Wait_P8_Page_Loading {
 		return explicitWait.until(jQueryLoad) && explicitWait.until(ajaxIconLoading);
 	}
 	
-	public boolean isJQueryAndPageLoadSuccess(WebDriver driver) {
+	public boolean isJQueryAndPageLoadSuccess() {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		jsExecutor = (JavascriptExecutor) driver;
 		
