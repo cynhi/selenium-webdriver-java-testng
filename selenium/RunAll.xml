@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="All Suite" thread-count="3">
+	<suite-files>
+		<suite-file path ="RunTestCase.xml"/>
+		<suite-file path ="RunTestCase2.xml"/>
+	</suite-files>
+</suite>

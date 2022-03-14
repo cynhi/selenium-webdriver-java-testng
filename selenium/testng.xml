@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Topic_05_Data_Provider">
+    <classes>
+      <class name="testNG.Topic_02_Assert"/>
+      <class name="testNG.Topic_03_Group"/>
+      <class name="testNG.Topic_01_Annotation"/>
+      <class name="testNG.Topic_04_Priority_Skip_Description"/>
+    </classes>
+  </test> <!-- Topic_05_Data_Provider -->
+</suite> <!-- Suite -->

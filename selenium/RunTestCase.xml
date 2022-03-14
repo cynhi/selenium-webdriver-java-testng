@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite1" thread-count="3">
+  <!-- <groups>
+  	<run>
+  	   <include name= "super"/>
+  	   <exclude name ="super"/>
+  	</run>
+  </groups>	 -->
+  <!-- <parameter name ="url" value="https://demo.nopcommerce.com/"/>
+  <parameter name ="environment" value="LOCAL"/> -->
+  
+  <listeners>
+  	<listener class-name ="listener.ExtentReport"/>
+  </listeners>
+  
+  
+  <test name="Test on FF">
+  <parameter name ="browser" value ="firefox"/>
+    <classes>
+      <class name="testNG.Topic_06_Parameter"/>
+    </classes>
+  </test>
+   
+   
+  <test name="Test on Chrome">
+  <parameter name ="browser" value ="chrome"/>
+    <classes>
+      <class name="testNG.Topic_06_Parameter"/>
+    </classes>
+    
+  <packages>
+ 		<package name = "webdriver"/>
+ 		<package name = "testng"/>
+  </packages>  
+  </test>
+  
+  
+  
+</suite>
