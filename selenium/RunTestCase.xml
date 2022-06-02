@@ -15,6 +15,7 @@
   
   
   <test name="Test on FF">
+  <!--Input value "firefox" for variable "browser" in TC -->
   <parameter name ="browser" value ="firefox"/>
     <classes>
       <class name="testNG.Topic_06_Parameter"/>
